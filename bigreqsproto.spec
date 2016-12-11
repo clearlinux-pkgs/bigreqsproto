@@ -4,7 +4,7 @@
 #
 Name     : bigreqsproto
 Version  : 1.1.2
-Release  : 7
+Release  : 8
 URL      : http://xorg.freedesktop.org/archive/individual/proto/bigreqsproto-1.1.2.tar.bz2
 Source0  : http://xorg.freedesktop.org/archive/individual/proto/bigreqsproto-1.1.2.tar.bz2
 Summary  : BigReqs extension headers
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : MIT-Opengroup
 Requires: bigreqsproto-doc
 BuildRequires : libxslt-bin
+BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : xmlto
 
 %description
@@ -22,6 +23,7 @@ that exceed 262140 bytes in length.
 %package dev
 Summary: dev components for the bigreqsproto package.
 Group: Development
+Provides: bigreqsproto-devel
 
 %description dev
 dev components for the bigreqsproto package.
@@ -39,10 +41,15 @@ doc components for the bigreqsproto package.
 %setup -q -n bigreqsproto-1.1.2
 
 %build
+export LANG=C
 %configure --disable-static
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -56,7 +63,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/include/X11/extensions/bigreqsproto.h
 /usr/include/X11/extensions/bigreqstr.h
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/pkgconfig/bigreqsproto.pc
 
 %files doc
 %defattr(-,root,root,-)

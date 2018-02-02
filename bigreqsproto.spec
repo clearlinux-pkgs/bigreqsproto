@@ -4,7 +4,7 @@
 #
 Name     : bigreqsproto
 Version  : 1.1.2
-Release  : 10
+Release  : 11
 URL      : http://xorg.freedesktop.org/archive/individual/proto/bigreqsproto-1.1.2.tar.bz2
 Source0  : http://xorg.freedesktop.org/archive/individual/proto/bigreqsproto-1.1.2.tar.bz2
 Summary  : BigReqs extension headers
